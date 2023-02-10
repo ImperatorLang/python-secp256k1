@@ -57,7 +57,7 @@ class SchnorrsigExtraparams(ctypes.Structure):
 #               argument and for guidance if randomness is expensive.
 #
 @enforce_type
-def schnorrsig_sign32(
+def schnorrsig_sign(
     keypair: Secp256k1Keypair, msg32: bytes, aux_rand32: Optional[bytes] = None
 ) -> bytes:
     """
@@ -88,7 +88,7 @@ def schnorrsig_sign32(
     :raises Libsecp256k1Exception: if schnorrsig_sign32 returned failure
     """
     compact_sig = ctypes.create_string_buffer(COMPACT_SIGNATURE_LENGTH)
-    result = lib.secp256k1_schnorrsig_sign32(
+    result = lib.secp256k1_schnorrsig_sign(
         secp256k1_context_sign, compact_sig, msg32, keypair, aux_rand32
     )
     if result != 1:
