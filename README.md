@@ -1,4 +1,7 @@
-# python-secp256k1
+# python-secp256k1-cardano
+
+> This project is a fork of [python-secp256k1](https://github.com/scgbckbone/python-secp256k1), fixing the commit hash of libsecp256k1 to a Cardano compatible version
+
 #### WARNING: In python you do not control memory. Regardless of how secrets are passed to the underlying lib, it still was an object in python before. It will linger in the heap for some time even after going out of scope. It is also impossible to mlock() secrets, your private keys may end up on disk in swap. Use with caution!!!
 
 Python FFI bindings for [libsecp256k1](https://github.com/bitcoin-core/secp256k1) (an experimental and optimized C library for EC operations on curve secp256k1) using [ctypes](https://docs.python.org/3/library/ctypes.html).
@@ -58,15 +61,14 @@ Apart from `ctypes.c_char_Array` and `ctypes.c_void_p` this library uses a limit
 
 ## Installation and dependencies
 Only dependency of `pysecp256k1` is `python3.6+` and `libsecp256k1` itself.
-To use full feature set build secp256k1 this way:
+Do install `libsecp256k1` in the way [described in the documentation of cardano-node](https://github.com/input-output-hk/cardano-node/blob/master/doc/getting-started/install.md/#installing-secp256k1).
 ```shell
-git clone https://github.com/bitcoin-core/secp256k1.git
-cd secp256k1/
-git checkout v0.2.0
+git clone https://github.com/bitcoin-core/secp256k1
+cd secp256k1
+git checkout ac83be33
 ./autogen.sh
-./configure --enable-module-recovery
+./configure --enable-module-schnorrsig --enable-experimental
 make
-make check
 sudo make install
 ```
 if one builds secp256k1 without schnorrsig for example and then tries to import from it `from pysecp256k1.schnorrsig import schnorrsig_sign32`
@@ -80,7 +82,7 @@ export PYSECP_SO=/home/johndoe/secp256k1/.libs/libsecp256k1.so.0.0.0
 Install `python-secp256k1` python package from pypi: 
 ```shell
 python3 -m pip install -U pip wheel
-python3 -m pip install python-secp256k1
+python3 -m pip install python-secp256k1-cardano
 ```
 
 ## Examples
