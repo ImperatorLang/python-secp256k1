@@ -3,7 +3,7 @@
 import os
 from setuptools import setup
 
-__version__ = "0.2.1"
+__version__ = "0.2.2"
 
 here = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(here, "README.md")) as f:
@@ -12,12 +12,12 @@ with open(os.path.join(here, "README.md")) as f:
 install_requires = []
 
 setup(
-    name="python-secp256k1",
+    name="python-secp256k1-cardano",
     version=__version__,
     license="MIT",
     author="scg",
     author_email="scgbckbone@proton.me",
-    description="Ctypes Python3 FFI bindings for libsecp256k1",
+    description="Ctypes Python3 FFI bindings for libsecp256k1 at commit hash ac83be33",
     long_description=README,
     long_description_content_type="text/markdown",
     classifiers=[
@@ -29,7 +29,7 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Natural Language :: English",
     ],
-    url="https://github.com/scgbckbone/python-secp256k1",
+    url="https://github.com/ImperatorLang/python-secp256k1",
     keywords=[
         "bitcoin",
         "secp256k1",
